@@ -66,7 +66,7 @@
 
             this.Users.Update(currentUser);
 
-            return new AddFriendResponse(Status.MISSING_PARRAMETERS);
+            return new AddFriendResponse(Status.ADDFRIEND_SUCCESSFULL_ADDED);
         }
 
         [Route("api/remove-friend")]

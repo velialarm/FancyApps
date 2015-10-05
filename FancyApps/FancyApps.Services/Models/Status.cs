@@ -25,7 +25,7 @@
         public static readonly Status ADDFRIEND_SUCCESSFULL_ADDED = new Status(0, "Friend was successfully added");
 
         //Remove Friend 
-        public static readonly Status REMOVEFRIEND_SUCCESS = new Status(603, "Success remove friend from your list");
+        public static readonly Status REMOVEFRIEND_SUCCESS = new Status(0, "Success remove friend from your list");
         public static readonly Status REMOVEFRIEND_NOT_EXIST_IN_LIST = new Status(603, "Friend is not exist in your list.");
 
         public Status()
