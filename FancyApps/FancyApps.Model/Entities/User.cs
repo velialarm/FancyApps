@@ -31,7 +31,7 @@
         public string Email { get; set; }
 
         public string Token { get; set; }
-        
+
         [BsonIgnoreIfNull]
         public string Phone { get; set; }
 
@@ -49,9 +49,17 @@
         [BsonElement("address")]
         public string Address { get; set; }
 
-        public ICollection<Friend> Friends {
-            get { return this.friends; }
-            set { this.friends = value; }
+        public ICollection<Friend> Friends
+        {
+            get
+            {
+                return this.friends;
+            }
+
+            set
+            {
+                this.friends = value;
+            }
         }
     }
 }

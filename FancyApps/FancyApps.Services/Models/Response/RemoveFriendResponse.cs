@@ -3,10 +3,13 @@
     public class RemoveFriendResponse : ResponseModel
     {
 
-        public RemoveFriendResponse() { }
+        public RemoveFriendResponse()
+        {
+        }
 
-        public RemoveFriendResponse(Status status)
-            : base(status) { }
+        public RemoveFriendResponse(Status status) : base(status)
+        {
+        }
 
     }
 }

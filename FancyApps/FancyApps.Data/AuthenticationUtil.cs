@@ -19,7 +19,7 @@
             return token + key;
         }
         
-        public static bool isValidPassword(string token, string password)
+        public static bool IsValidPassword(string token, string password)
         {
             var t = token.Substring(0, token.Length - 36);
 
@@ -29,6 +29,7 @@
             {
                 return false;
             }
+
             return true;
         }
     }

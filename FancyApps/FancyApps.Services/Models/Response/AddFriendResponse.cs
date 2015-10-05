@@ -2,9 +2,12 @@
 {
     public class AddFriendResponse : ResponseModel
     {
-        public AddFriendResponse(){}
+        public AddFriendResponse()
+        {
+        }
 
-        public AddFriendResponse(Status status) 
-            : base(status){}
+        public AddFriendResponse(Status status) : base(status)
+        {
+        }
     }
 }

@@ -2,14 +2,20 @@
 {
     public class LoginResponseModel : ResponseModel
     {
-        public LoginResponseModel(Status status):base(status){}
+        public LoginResponseModel()
+        {
+        }
+
+        public LoginResponseModel(Status status) : base(status)
+        {
+        }
 
         public LoginResponseModel(Status status, string token) : base(status)
         {
             this.Token = token;
         }
 
-        //[IgnoreDataMember]
+        ////[IgnoreDataMember]
         public string Token { get; set; }
     }
 }

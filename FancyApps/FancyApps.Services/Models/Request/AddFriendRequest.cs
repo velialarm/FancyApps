@@ -5,7 +5,6 @@
 
     public class AddFriendRequest : RequestModel
     {
-
         public User User { get; set; }
 
         public string Nickname { get; set; }

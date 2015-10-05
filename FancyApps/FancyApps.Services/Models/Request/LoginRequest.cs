@@ -14,6 +14,5 @@
         public string Password { get; set; }
 
         public string FanApp { get; set; }
-
     }
 }

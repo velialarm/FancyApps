@@ -1,6 +1,5 @@
 ﻿namespace FancyApps.Services.Controllers
 {
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -14,43 +13,35 @@
 
     public class UserController : AbstractApiController
     {
- 
         [Route("api/sing-up")]
         [HttpPost]
         public ResponseModel RegisterUser(SignUpRequestModel input)
         {
+            var response = new ResponseModel();
+
             if (!this.ModelState.IsValid)
             {
-                return new ResponseModel
+                response.Status = new Status
                 {
-                    Status = new Status
-                    {
-                        Code = 101,
-                        Message = this.ModelState.Values.First().Errors.First().ErrorMessage
-                    }
+                    Code = Status.INTERNAL_MESSAGE_CODE,
+                    Message = this.ModelState.Values.First().Errors.First().ErrorMessage
                 };
+
+                return response;
             }
 
             if (input == null)
             {
-                return new ResponseModel
-                {
-                    Status = new Status(900, "Missing parameters")
-                };
+                response.Status = Status.MISSING_PARRAMETERS;
+                return response;
             }
 
-            //check for exist user in db by email
+            ////check for exist user in db by email
             var existUser = this.Users.SingleOrDefault(a => a.Email == input.Email);
             if (existUser != null)
             {
-                return new ResponseModel
-                {
-                    Status = new Status
-                    {
-                        Code = 0,
-                        Message = "You have account. In Family Apps and You can authenticate with it."
-                    }
-                };
+                response.Status = Status.SIGNUP_HAS_ACCOUNT_YET;
+                return response;
             }
 
             this.Users.Add(new User
@@ -65,42 +56,43 @@
                 Address = input.Address,
                 CreateDatetime = DateTime.Now,
                 Token = AuthenticationUtil.Encrypt(input.Password)
-
             });
 
-            return new ResponseModel(new Status(0, "You are singup succesfull"));
+            response.Status = Status.SIGNUP_SUCCESS;
+            return response;
         }
 
         [Route("api/login")]
         [HttpPost]
         public LoginResponseModel AuthenticateUser(LoginRequestModel input)
         {
+            var response = new LoginResponseModel();
+
             if (!this.ModelState.IsValid)
             {
                 var errorMessage = this.ModelState.Values.First().Errors.First().ErrorMessage;
-                return new LoginResponseModel(new Status(102, errorMessage));
+                response.Status = new Status(102, errorMessage);
+                return response;
             }
 
             if (input == null)
             {
-                return new LoginResponseModel(new Status(900, "Missing parameters"));
+                response.Status = Status.MISSING_PARRAMETERS;
+                return response;
             }
 
-            //get user by email
+            ////get user by email
             var existUser = this.Users.SingleOrDefault(a => a.Email == input.Email);
+            bool isValidPassword = false;
             if (existUser != null)
             {
-                bool isValidPassword = AuthenticationUtil.isValidPassword(existUser.Token, input.Password);
-                if(!isValidPassword)
-                {
-                    return new LoginResponseModel(new Status(104, "Invalid password"), null);
-                }
-
+                isValidPassword = AuthenticationUtil.IsValidPassword(existUser.Token, input.Password);
+               
             }
-            else
+            if (!isValidPassword)
             {
-                //not exist user
-                return new LoginResponseModel(new Status(104, "Not exist user"), null);
+                response.Status = Status.INVALID_PASSWORD;
+                return response;
             }
 
             var recreateToken = AuthenticationUtil.Encrypt(input.Password);
@@ -109,49 +101,52 @@
             {
                 existUser.FanApps = input.FanApp;
             }
+
             this.Users.Update(existUser);
-            return new LoginResponseModel(new Status(0, "You are logged succesfull"), recreateToken);
+            response.Status = Status.LOGIN_SUCCESFULLY;
+            response.Token = recreateToken;
+            return response;
         }
 
         [Route("api/get-users")]
         [HttpPost]
         public GetUsersResponse SearchUsers(GetUsersRequest input)
         {
+            GetUsersResponse response = new GetUsersResponse();
+
             if (!this.ModelState.IsValid)
             {
-                return new GetUsersResponse
+                response.Status = new Status
                 {
-                    Status = new Status
-                    {
-                        Code = 102,
-                        Message = this.ModelState.Values.First().Errors.First().ErrorMessage
-                    }
+                    Code = Status.INTERNAL_MESSAGE_CODE,
+                    Message = this.ModelState.Values.First().Errors.First().ErrorMessage
                 };
+
+                return response;
             }
 
             if (input == null)
             {
-                return new GetUsersResponse
-                {
-                    Status = new Status(900, "Missing parameters")
-                };
+                response.Status = Status.MISSING_PARRAMETERS;
+                return response;
             }
 
-            //check for register user by Token
+            ////check for register user by Token
             User currentUser = null;
             try
             {
-                currentUser = this.Users.SingleOrDefault(a => a.Token == input.Token); //TODO TOKEN must be unique 
+                currentUser = this.Users.SingleOrDefault(a => a.Token == input.Token); ////TOKEN must be unique 
                 if (currentUser == null)
                 {
-                    return new GetUsersResponse(new Status(103, "Invalid Token"));
+                    response.Status = Status.INVALID_TOKEN;
+                    return response;
                 }
             }
             catch (Exception)
             {
-                return new GetUsersResponse(new Status(105, "Internal Error"));
+                response.Status = Status.INTERNAL_ERROR;
+                return response;
             }
-
 
             List<User> allUsers = this.Users.Where(a => a.FanApps == currentUser.FanApps).AsQueryable().ToList();
             List<UserModel> usersResponseList = new List<UserModel>();
@@ -165,10 +160,10 @@
                 });
             }
 
-            var response =  new GetUsersResponse(new Status(0, "Success"), usersResponseList);
+            response.Status = Status.SUCCESS_FETCH_USERS;
+            response.Users = usersResponseList;
             response.FanAppName = currentUser.FanApps;
             return response;
         }
-
     }
 }

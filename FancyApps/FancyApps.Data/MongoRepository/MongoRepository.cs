@@ -1,19 +1,18 @@
 ﻿namespace FancyApps.Data.MongoRepository
 {
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
-    using Repository;
     using MongoDB.Bson;
     using MongoDB.Driver;
     using MongoDB.Driver.Builders;
     using MongoDB.Driver.Linq;
+    using Repository;
 
-    public class MongoRepository<T,TKey> :IRepository<T,TKey> where T:IEntity<TKey>
+    public class MongoRepository<T, TKey> : IRepository<T, TKey> where T : IEntity<TKey>
     {
-        protected internal MongoCollection<T> collection;
+        private MongoCollection<T> collection;
 
         public MongoRepository()
             : this(ConnectionUtil<TKey>.GetDefaultConnectionString())
@@ -173,25 +172,28 @@
             get { return this.collection.AsQueryable<T>().Provider; }
         }
         #endregion
-
     }
 
-    public class MongoRepository<T> : MongoRepository<T, string>, IRepository<T>
-        where T : IEntity<string>
+    public class MongoRepository<T> : MongoRepository<T, string>, IRepository<T> where T : IEntity<string>
     {
-        public MongoRepository()
-            : base() { }
+        public MongoRepository() : base()
+        {
+        }
 
-        public MongoRepository(MongoUrl url)
-            : base(url) { }
+        public MongoRepository(MongoUrl url) : base(url)
+        {
+        }
 
-        public MongoRepository(MongoUrl url, string collectionName)
-            : base(url, collectionName) { }
+        public MongoRepository(MongoUrl url, string collectionName) : base(url, collectionName)
+        {
+        }
 
-        public MongoRepository(string connectionString)
-            : base(connectionString) { }
+        public MongoRepository(string connectionString) : base(connectionString)
+        {
+        }
 
-        public MongoRepository(string connectionString, string collectionName)
-            : base(connectionString, collectionName) { }
+        public MongoRepository(string connectionString, string collectionName) : base(connectionString, collectionName)
+        {
+        }
     }
 }

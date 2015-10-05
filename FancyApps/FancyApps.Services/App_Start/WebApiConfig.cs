@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
-using System.Web.OData.Extensions;
-using System.Net.Http.Headers;
-
-namespace FancyApps.Services
+﻿namespace FancyApps.Services
 {
+    using System.Web.Http;
+    using System.Net.Http.Headers;
+    using System.Web.OData.Extensions;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
@@ -21,7 +18,10 @@ namespace FancyApps.Services
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                defaults: new
+                {
+                    id = RouteParameter.Optional
+                }
             );
 
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(

@@ -80,13 +80,13 @@ intellisense.annotate(jQuery, {
   'data': function() {
     /// <signature>
     ///   <summary>Returns value at named data store for the element, as set by jQuery.data(element, name, value), or the full data store for the element.</summary>
-    ///   <param name="element" type="Element">The DOM element to query for the data.</param>
+    ///   <param name="element" type="Element">The DOM element to Query for the data.</param>
     ///   <param name="key" type="String">Name of the data stored.</param>
     ///   <returns type="Object" />
     /// </signature>
     /// <signature>
     ///   <summary>Returns value at named data store for the element, as set by jQuery.data(element, name, value), or the full data store for the element.</summary>
-    ///   <param name="element" type="Element">The DOM element to query for the data.</param>
+    ///   <param name="element" type="Element">The DOM element to Query for the data.</param>
     ///   <returns type="Object" />
     /// </signature>
   },
@@ -293,12 +293,12 @@ intellisense.annotate(jQuery, {
   },
   'param': function() {
     /// <signature>
-    ///   <summary>Create a serialized representation of an array or object, suitable for use in a URL query string or Ajax request.</summary>
+    ///   <summary>Create a serialized representation of an array or object, suitable for use in a URL Query string or Ajax request.</summary>
     ///   <param name="obj" type="Object">An array or object to serialize.</param>
     ///   <returns type="String" />
     /// </signature>
     /// <signature>
-    ///   <summary>Create a serialized representation of an array or object, suitable for use in a URL query string or Ajax request.</summary>
+    ///   <summary>Create a serialized representation of an array or object, suitable for use in a URL Query string or Ajax request.</summary>
     ///   <param name="obj" type="Object">An array or object to serialize.</param>
     ///   <param name="traditional" type="Boolean">A Boolean indicating whether to perform a traditional "shallow" serialization.</param>
     ///   <returns type="String" />

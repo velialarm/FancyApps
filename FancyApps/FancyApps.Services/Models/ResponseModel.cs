@@ -2,8 +2,7 @@
 {
     public class ResponseModel
     {
-
-        public ResponseModel(){}
+        public ResponseModel() { }
 
         public ResponseModel(Status status)
         {
@@ -11,7 +10,5 @@
         }
 
         public Status Status { get; set; }
-
-
     }
 }

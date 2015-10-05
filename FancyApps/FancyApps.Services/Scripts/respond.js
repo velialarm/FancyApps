@@ -44,7 +44,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 
 
 
-/*! Respond.js v1.2.0: min/max-width media query polyfill. (c) Scott Jehl. MIT/GPLv2 Lic. j.mp/respondjs  */
+/*! Respond.js v1.2.0: min/max-width media Query polyfill. (c) Scott Jehl. MIT/GPLv2 Lic. j.mp/respondjs  */
 (function( win ){
 	//exposed namespace
 	win.respond		= {};
@@ -52,7 +52,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 	//define update even in native-mq-supporting browsers, to avoid errors
 	respond.update	= function(){};
 	
-	//expose media query support flag for external use
+	//expose media Query support flag for external use
 	respond.mediaQueriesSupported	= win.matchMedia && win.matchMedia( "only all" ).matches;
 	
 	//if media queries are supported, exit here
@@ -250,7 +250,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 					max = parseFloat( max ) * ( max.indexOf( em ) > -1 ? ( eminpx || getEmValue() ) : 1 );
 				}
 				
-				// if there's no media query at all (the () part), or min or max is not null, and if either is present, they're true
+				// if there's no media Query at all (the () part), or min or max is not null, and if either is present, they're true
 				if( !thisstyle.hasquery || ( !minnull || !maxnull ) && ( minnull || currWidth >= min ) && ( maxnull || currWidth <= max ) ){
 						if( !styleBlocks[ thisstyle.media ] ){
 							styleBlocks[ thisstyle.media ] = [];

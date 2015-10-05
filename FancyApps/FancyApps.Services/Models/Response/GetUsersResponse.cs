@@ -5,13 +5,15 @@
 
     public class GetUsersResponse : ResponseModel
     {
-        public GetUsersResponse(){}
+        public GetUsersResponse()
+        {
+        }
 
-        public GetUsersResponse(Status status) 
-            : base(status){}
+        public GetUsersResponse(Status status) : base(status)
+        {
+        }
 
-        public GetUsersResponse(Status status, List<UserModel> userModels)
-            :base(status)
+        public GetUsersResponse(Status status, List<UserModel> userModels) : base(status)
         {
             this.Users = userModels;
         }

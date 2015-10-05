@@ -68,8 +68,7 @@
     /// </summary>
     /// <typeparam name="T">The type contained in the repository.</typeparam>
     /// <remarks>Entities are assumed to use strings for Id's.</remarks>
-    public interface IRepository<T> :IQueryable<T>, IRepository<T, string> where T: IEntity<string>
+    public interface IRepository<T> : IQueryable<T>, IRepository<T, string> where T : IEntity<string>
     {
-        
     }
 }

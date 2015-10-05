@@ -62,7 +62,6 @@
   <ItemGroup>
     <Compile Include="AuthenticationUtil.cs" />
     <Compile Include="ConnectionUtil.cs" />
-    <Compile Include="FancyAppsDbContext.cs" />
     <Compile Include="MongoRepository\MongoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MongoRepository\IRepository.cs" />

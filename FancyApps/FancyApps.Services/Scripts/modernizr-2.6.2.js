@@ -683,7 +683,7 @@ window.Modernizr = (function( window, document, undefined ) {
         //   will sometimes throw a false positive, thus we must do a more thorough check:
         if ( ret && 'webkitPerspective' in docElement.style ) {
 
-          // Webkit allows this media query to succeed only if the feature is enabled.
+          // Webkit allows this media Query to succeed only if the feature is enabled.
           // `@media (transform-3d),(-webkit-transform-3d){ ... }`
           injectElementWithStyles('@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}', function( node, rule ) {
             ret = node.offsetLeft === 9 && node.offsetHeight === 3;
@@ -1330,11 +1330,11 @@ window.Modernizr = (function( window, document, undefined ) {
     /*>>domprefixes*/
 
     /*>>mq*/
-    // Modernizr.mq tests a given media query, live against the current state of the window
+    // Modernizr.mq tests a given media Query, live against the current state of the window
     // A few important notes:
     //   * If a browser does not support media queries at all (eg. oldIE) the mq() will always return false
-    //   * A max-width or orientation query will be evaluated against the current state, which may change later.
-    //   * You must specify values. Eg. If you are testing support for the min-width media query use:
+    //   * A max-width or orientation Query will be evaluated against the current state, which may change later.
+    //   * You must specify values. Eg. If you are testing support for the min-width media Query use:
     //       Modernizr.mq('(min-width:0)')
     // usage:
     // Modernizr.mq('only screen and (max-width:768)')

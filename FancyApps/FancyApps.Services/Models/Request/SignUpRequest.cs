@@ -11,7 +11,7 @@
         [Required]
         [MinLength(2)]
         [MaxLength(100)]
-        [Display(Name="firstName")]
+        [Display(Name = "firstName")]
         public string FirstName { get; set; }
 
         [Required]
@@ -46,6 +46,5 @@
 
         [Display(Name = "address")]
         public string Address { get; set; }
-    
     }
 }

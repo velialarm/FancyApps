@@ -62,6 +62,7 @@
             {
                 throw new ArgumentException("Collection name cannot be empty for this entity");
             }
+
             return collectionName;
         }
 
@@ -105,6 +106,7 @@
                         entitytype = entitytype.BaseType;
                     }
                 }
+
                 collectionname = entitytype.Name;
             }
 
